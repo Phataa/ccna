@@ -1,0 +1,13 @@
+﻿- name: Set Ip loobpack
+  host: all
+  gather_fact: no
+  
+  tasks:
+	- name: Set loopback IPv4 address
+	  ios_13_interface:
+		name: loopback {{ item.name }}
+		ipv4: 10.0.{{ item.number }}.1/24
+	  with_items:
+		- { name: "1", number: 1}
+		- { name: "2", number: 2}
+		- { name: "3", number: 3}
